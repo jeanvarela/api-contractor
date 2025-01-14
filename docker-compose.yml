@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: userdb        # Set your desired PostgreSQL username
+      POSTGRES_PASSWORD: rE6x67J7rN3C     # Set your desired PostgreSQL password
+      POSTGRES_DB: contructordb     # Set your desired database name
+    ports:
+      - "5432:5432"                  # Expose PostgreSQL default port to the host machine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data between restarts
+    networks:
+      - pg_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  pg_network:
+    driver: bridge

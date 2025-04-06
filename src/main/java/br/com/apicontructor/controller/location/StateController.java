@@ -1,6 +1,6 @@
 package br.com.apicontructor.controller.location;
 
-import br.com.apicontructor.service.location.LocationService;
+import br.com.apicontructor.service.location.StateService;
 import br.com.apicontructor.service.model.StateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +11,14 @@ import java.util.List;
 
 
 @RestController
-    @RequestMapping("/api/location")
-public class LocationController {
+@RequestMapping("/api/state")
+public class StateController {
 
     @Autowired
-    private LocationService locationService;
+    private StateService stateService;
 
     @GetMapping
     public List<StateDTO> findStates(){
-      return locationService.findAllStates();
+      return stateService.findAllStates();
     }
 }

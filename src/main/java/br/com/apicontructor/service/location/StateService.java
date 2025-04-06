@@ -4,7 +4,7 @@ import br.com.apicontructor.service.model.StateDTO;
 
 import java.util.List;
 
-public interface LocationService {
+public interface StateService {
 
     List<StateDTO> findAllStates();
 }

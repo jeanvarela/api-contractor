@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class LocationServiceImpl implements LocationService{
+public class StateServiceImpl implements StateService {
 
     @Autowired
     private StateRepository stateRepository;

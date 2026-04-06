@@ -3,6 +3,8 @@ package br.com.apicontructor.controller.util.handler;
 import br.com.apicontructor.controller.util.handler.enumerator.ProblemTypeEnum;
 import br.com.apicontructor.controller.util.handler.model.FieldDetail;
 import br.com.apicontructor.controller.util.handler.model.Problem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -14,12 +16,15 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -31,7 +36,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                                                 .stream()
                                                 .map(field -> FieldDetail.builder()
                                                         .name(field.getField())
-                                                        .userMessage(field.getDefaultMessage())
+                                                        .userMessage(messageSource.getMessage(field.getDefaultMessage(), null
+                                                                , new Locale("pt", "BR")))
                                                         .build()).collect(Collectors.toList());
 
         Problem problem = createProblemBuilder(status.value(), ProblemTypeEnum.DADOS_INVALIDOS, detail, fields);

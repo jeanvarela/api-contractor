@@ -20,6 +20,7 @@ public class CompanyRequest {
     @NotBlank
     private String name;
 
+    @NotBlank(message = "federal.tax.payer.not.found")
     private String federalTaxPayer;
 
     @NotNull

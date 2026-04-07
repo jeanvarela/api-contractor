@@ -21,7 +21,7 @@ public class CompanyRequest {
     private String name;
 
     @NotBlank(message = "federal.tax.payer.not.found")
-    private String federalTaxPayer;
+    private String identifier;
 
     @NotNull
     @Valid

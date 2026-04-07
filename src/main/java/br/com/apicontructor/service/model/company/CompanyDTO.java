@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CompanyDTO {
     private long id;
     private String name;
-    private String federalTaxPayer;
+    private String identifier;
     private AddressDTO address;
     private String email;
     private String socialReason;
